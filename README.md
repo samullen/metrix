@@ -4,12 +4,13 @@ A tiny library to simplify measuring the execution time of code blocks.
 
 ## Overview
 
-Metrix is a module you can `use` in your elixir applications to simplify
-measuring and relaying the results to [Telemetry](https://github.com/beam-telemetry/telemetry).
+Metrix is a module you can `use` in your [Elixir](https://elixir-lang.org)
+applications to simplify measuring and relaying the results to
+[Telemetry](https://github.com/beam-telemetry/telemetry).
 
 When incorporated into your modules, you provide `measure/2` the event name to
-send measurements to. `measure/2` sends the following data to your Telemetry
-event handler:
+send measurements to, and the block of code you want to measure. `measure/2`
+then sends the following data to your Telemetry event handler:
 
 - measurement: This is a `Map` with `:duration` as the key. The value is in
   microseconds
