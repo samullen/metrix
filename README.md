@@ -64,3 +64,10 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/metrix](https://hexdocs.pm/metrix).
 
+## Copyright and License
+
+Metrix is copyright (c) 2020 Samuel Mullen.
+
+Metrix source code is released under Apache License, Version 2.0.
+
+See LICENSE and NOTICE files for more information.
