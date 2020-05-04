@@ -14,9 +14,10 @@ then sends the following data to your Telemetry event handler:
 
 - measurement: This is a `Map` with `:duration` as the key. The value is in
   microseconds
-- metadata: Metadata is the value returned by the block of logic wrapped by
-  `measure/2`. If the return value is not a map, `measure/2` returns it as a map
-  with `:response` as the key. (e.g. `%{response: return_value}`).
+- metadata: The value returned from the block as a map in the form `%{response:
+  results}`. Extra metadata can be provided to `measure/3` as a `Map`. The
+  resulting metadata will be a merging of what's provided and the
+  response/results. Example: `measure([:event, :name], %{conn: conn}), do: ...`
 
 ### Example
 
