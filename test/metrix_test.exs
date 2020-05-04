@@ -29,18 +29,18 @@ defmodule MetrixTest do
       assert duration < 10
     end
 
-    test "returns map metadata as the map" do
-      measure [:test, :event], do: %{result: 42}
-
-      assert_receive {_event, _measurement, metadata}
-      assert metadata == %{result: 42}
-    end
-
-    test "returns non-map metadata as a map with ':response' as key" do
+    test "assigns return value to ':response' key in metadata" do
       measure [:test, :event], do: 42
 
       assert_receive {_event, _measurement, metadata}
-      assert metadata == %{response: 42}
+      assert metadata.response == 42
+    end
+
+    test "allows metadata to be prepopulated" do
+      measure [:test, :event], %{example: "prepopulated"}, do: 42
+
+      assert_receive {_event, _measurement, metadata}
+      assert metadata.example == "prepopulated"
     end
   end
 

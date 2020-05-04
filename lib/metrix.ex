@@ -5,17 +5,13 @@ defmodule Metrix do
     end
   end
 
-  defmacro measure(event, do: block) do
+  defmacro measure(event, metadata \\ Macro.escape(%{}), do: block) do
     quote do
       case :timer.tc(fn -> unquote(block) end) do
-        {time, response} when is_map(response) ->
-          :telemetry.execute(unquote(event), %{duration: time}, response)
-          response
-
         {time, response} ->
-          :telemetry.execute(unquote(event), %{duration: time}, %{
-            response: response
-          })
+          metadata = Map.put(unquote(metadata), :response, response)
+
+          :telemetry.execute(unquote(event), %{duration: time}, metadata)
 
           response
       end
